@@ -1,7 +1,10 @@
 import "./styles.css";
 import axios from "axios";
 import React, { useState } from "react";
-import SearchBar from "./Components/SearchBar";
+//import SearchBar from "./Components/SearchBar";//
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { FormControl, TextField } from "@material-ui/core";
 
 export default function App() {
   const codingChallenge = (
@@ -45,7 +48,7 @@ export default function App() {
         if (item.name.includes(text)) return item.name;
         return false;
       });
-      console.log("tets", matches);
+      console.log("tests", matches);
     }
     setSuggestions(matches);
     setText(text);
@@ -54,6 +57,15 @@ export default function App() {
     <div className="App">
       <>{codingChallenge}</>
       <div>
+        <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options="test"
+          sx={{ width: 50 }}
+          renderInput={(params) => (
+            <TextField {...params} label="Enter search criteria" />
+          )}
+        />
         <input
           placeholder="Enter search criteria"
           type="search"
